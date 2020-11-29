@@ -2,6 +2,7 @@ using Gee;
 
 public class ServiceManager.Window : Gtk.ApplicationWindow {
 	public GLib.Settings settings;
+	public Gtk.Stack stack { get; set; }
 	private Gtk.Paned system_services_paned;
 	private Gtk.Paned session_services_paned;
 
@@ -24,12 +25,19 @@ public class ServiceManager.Window : Gtk.ApplicationWindow {
 	 		return before_destroy ();
 	 	});
 
-	 	var headerbar = new ServiceManager.HeaderBar ();
-		set_titlebar (headerbar);
+		stack = new Gtk.Stack ();
+		stack.expand = true;
 
 		system_services_paned = create_services_paned(BusType.SYSTEM);
 		session_services_paned = create_services_paned(BusType.SESSION);
-		add(system_services_paned);
+
+		stack.add_titled (system_services_paned, "system", "System");
+		stack.add_titled (session_services_paned, "user", "User");
+
+		add (stack);
+
+		var headerbar = new ServiceManager.HeaderBar (this);
+		set_titlebar (headerbar);
 
 		show_all ();
 	}
@@ -40,11 +48,12 @@ public class ServiceManager.Window : Gtk.ApplicationWindow {
 		bool show_header = true;
 		foreach (var key in unit_map.keys) {
 			var unit = unit_map.get(key);
-			stdout.printf ("Unit: %s, state: %s, description: %s, sub-state: %s\n",
+			stdout.printf ("Unit: %s, state: %s, description: %s, sub-state: %s, unit-path: %s\n",
 				unit.id,
 				unit.active_state,
 				unit.description,
-				unit.sub_state
+				unit.sub_state,
+				unit.unit_path
 			);
 			ServiceManager.ServiceView service_view;
 			string service_name = unit.id.replace(".service", "");
@@ -66,7 +75,7 @@ public class ServiceManager.Window : Gtk.ApplicationWindow {
 		var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
 		paned.pack1 (switcher, false, false);
 		paned.add (stack);
-		
+
 		return paned;
 	}
 
