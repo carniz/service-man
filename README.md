@@ -1,4 +1,7 @@
-# vala-gtk-tutorial
-Official repository for the Vala and Gtk+ tutorial series
+# service-man
+A graphical interface for SystemD services on elementaryOS.
 
-[Video Tutorials Playlist](https://www.youtube.com/playlist?list=PLriKzYyLb28mn2lS3c5yqMHgLREi7kR9-)
+## Building
+- If not yet installed, install `elementary-sdk` with `sudo apt install elementary-sdk`
+- Run `meson build --prefix=/usr` to generate the build files
+- `cd build && ninja`
