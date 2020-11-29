@@ -9,7 +9,7 @@ public class ServiceManagerApplication : Gtk.Application {
 
 	protected override void activate () {
 		var window = new ServiceManager.Window (this);
-		stdout.printf ("DEBUG: ServiceManagerApplication.activate()\n");
+		debug ("ServiceManagerApplication.activate()\n");
 		add_window (window);
 	}
 

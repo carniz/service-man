@@ -1,6 +1,7 @@
 using Gee;
 
 public class ServiceManager.Window : Gtk.ApplicationWindow {
+
 	public GLib.Settings settings;
 	public Gtk.Stack stack { get; set; }
 	private Gtk.Paned system_services_paned;
@@ -48,7 +49,7 @@ public class ServiceManager.Window : Gtk.ApplicationWindow {
 		bool show_header = true;
 		foreach (var key in unit_map.keys) {
 			var unit = unit_map.get(key);
-			stdout.printf ("Unit: %s, state: %s, description: %s, sub-state: %s, unit-path: %s\n",
+			debug ("Unit: %s, state: %s, description: %s, sub-state: %s, unit-path: %s\n",
 				unit.id,
 				unit.active_state,
 				unit.description,

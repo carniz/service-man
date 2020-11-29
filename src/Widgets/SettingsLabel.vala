@@ -1,4 +1,5 @@
 public class SettingsLabel : Gtk.Label {
+
     public SettingsLabel (string label) {
         Object (label: label);
     }
@@ -7,3 +8,4 @@ public class SettingsLabel : Gtk.Label {
         halign = Gtk.Align.END;
     }
 }
+
