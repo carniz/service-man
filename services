@@ -1,0 +1,84 @@
+Unit: rtkit-daemon.service, description: RealtimeKit Scheduling Policy Service
+Unit: resolvconf.service, description: Nameserver information manager
+Unit: vboxweb-service.service, description: vboxweb-service.service
+Unit: systemd-sysctl.service, description: Apply Kernel Variables
+Unit: docker.service, description: Docker Application Container Engine
+Unit: systemd-journal-flush.service, description: Flush Journal to Persistent Storage
+Unit: networkd-dispatcher.service, description: Dispatcher daemon for systemd-networkd
+Unit: ModemManager.service, description: Modem Manager
+Unit: kerneloops.service, description: Tool to automatically collect and submit kernel crash signatures
+Unit: systemd-udevd.service, description: udev Kernel Device Manager
+Unit: vnstat.service, description: vnStat network traffic monitor
+Unit: snapd.apparmor.service, description: Load AppArmor profiles managed internally by snapd
+Unit: polkit.service, description: Authorization Manager
+Unit: thermald.service, description: Thermal Daemon Service
+Unit: grub-common.service, description: LSB: Record successful boot for GRUB
+Unit: systemd-cryptsetup@nvme0n1p3_crypt.service, description: Cryptography Setup for nvme0n1p3_crypt
+Unit: systemd-journald.service, description: Journal Service
+Unit: prime-socket.service, description: Socket service for on the fly prime switching
+Unit: cron.service, description: Regular background program processing daemon
+Unit: wpa_supplicant.service, description: WPA supplicant
+Unit: systemd-update-utmp.service, description: Update UTMP about System Boot/Shutdown
+Unit: systemd-user-sessions.service, description: Permit User Sessions
+Unit: apparmor.service, description: AppArmor initialization
+Unit: bluetooth.service, description: Bluetooth service
+Unit: qemu-kvm.service, description: QEMU KVM preparation - module, ksm, hugepages
+Unit: lvm2-pvscan@253:0.service, description: LVM2 PV scan on device 253:0
+Unit: code42.service, description: LSB: Code42 Service
+Unit: avahi-daemon.service, description: Avahi mDNS/DNS-SD Stack
+Unit: systemd-logind.service, description: Login Service
+Unit: lvm2-lvmetad.service, description: LVM2 metadata daemon
+Unit: systemd-fsck@dev-disk-by\x2duuid-D5E7\x2d74DF.service, description: File System Check on /dev/disk/by-uuid/D5E7-74DF
+Unit: irqbalance.service, description: irqbalance daemon
+Unit: vboxautostart-service.service, description: vboxautostart-service.service
+Unit: libvirtd.service, description: Virtualization daemon
+Unit: speech-dispatcher.service, description: LSB: Speech Dispatcher
+Unit: console-setup.service, description: Set console font and keymap
+Unit: rsyslog.service, description: System Logging Service
+Unit: NetworkManager.service, description: Network Manager
+Unit: pantheon-parental-controls.service, description: Pantheon Screen Time & Limits Daemon
+Unit: openvpn.service, description: OpenVPN service
+Unit: accounts-daemon.service, description: Accounts Service
+Unit: systemd-fsck@dev-disk-by\x2duuid-6f94f9d2\x2de2f2\x2d405b\x2d8bda\x2dc511c98bdbea.service, description: File System Check on /dev/disk/by-uuid/6f94f9d2-e2f2-405b-8bda-c511c98bdbea
+Unit: systemd-backlight@leds:dell::kbd_backlight.service, description: Load/Save Screen Backlight Brightness of leds:dell::kbd_backlight
+Unit: virtualbox.service, description: LSB: VirtualBox Linux kernel module
+Unit: cups.service, description: CUPS Scheduler
+Unit: systemd-resolved.service, description: Network Name Resolution
+Unit: kmod-static-nodes.service, description: Create list of required static device nodes for the current kernel
+Unit: ebtables.service, description: ebtables ruleset management
+Unit: teamviewerd.service, description: TeamViewer remote control daemon
+Unit: getty@tty1.service, description: Getty on tty1
+Unit: lightdm.service, description: Light Display Manager
+Unit: atd.service, description: Deferred execution scheduler
+Unit: vboxdrv.service, description: VirtualBox Linux kernel module
+Unit: dbus.service, description: D-Bus System Message Bus
+Unit: systemd-modules-load.service, description: Load Kernel Modules
+Unit: sysstat.service, description: Resets System Activity Data Collector
+Unit: keyboard-setup.service, description: Set the console keyboard layout
+Unit: libvirt-guests.service, description: Suspend/Resume Running libvirt Guests
+Unit: vboxballoonctrl-service.service, description: vboxballoonctrl-service.service
+Unit: acpid.service, description: ACPI event daemon
+Unit: upower.service, description: Daemon for power management
+Unit: systemd-tmpfiles-setup.service, description: Create Volatile Files and Directories
+Unit: containerd.service, description: containerd container runtime
+Unit: systemd-remount-fs.service, description: Remount Root and Kernel File Systems
+Unit: blk-availability.service, description: Availability of block devices
+Unit: binfmt-support.service, description: Enable support for additional executable binary formats
+Unit: udisks2.service, description: Disk Manager
+Unit: dnsmasq.service, description: dnsmasq - A lightweight DHCP and caching DNS server
+Unit: NetworkManager-wait-online.service, description: Network Manager Wait Online
+Unit: systemd-backlight@backlight:intel_backlight.service, description: Load/Save Screen Backlight Brightness of backlight:intel_backlight
+Unit: networking.service, description: Raise network interfaces
+Unit: cups-browsed.service, description: Make remote CUPS printers available locally
+Unit: ufw.service, description: Uncomplicated firewall
+Unit: alsa-restore.service, description: Save/Restore Sound Card State
+Unit: user@1000.service, description: User Manager for UID 1000
+Unit: lvm2-monitor.service, description: Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling
+Unit: setvtrgb.service, description: Set console scheme
+Unit: systemd-tmpfiles-setup-dev.service, description: Create Static Device Nodes in /dev
+Unit: snapd.seeded.service, description: Wait until snapd is fully seeded
+Unit: tlp.service, description: TLP system startup/shutdown
+Unit: systemd-udev-trigger.service, description: udev Coldplug all Devices
+Unit: systemd-random-seed.service, description: Load/Save Random Seed
+Unit: systemd-timesyncd.service, description: Network Time Synchronization
+Unit: colord.service, description: Manage, Install and Generate Color Profiles

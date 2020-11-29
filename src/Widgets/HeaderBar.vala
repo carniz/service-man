@@ -1,6 +1,6 @@
-public class ServiceMan.HeaderBar : Gtk.HeaderBar {
+public class ServiceManager.HeaderBar : Gtk.HeaderBar {
     construct {
-        title = "ServiceMan";
+        title = "Services";
         //  subtitle = "Let me help ya!";
 
         show_close_button = true;

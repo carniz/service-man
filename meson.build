@@ -1,5 +1,12 @@
 project('com.github.carniz.service-man', 'vala', 'c')
 
+gettext_name = meson.project_name()
+
+add_project_arguments(
+    '-DGETTEXT_PACKAGE="@0@"'.format(gettext_name),
+    language:'c'
+)
+
 subdir('src')
 subdir('data')
 

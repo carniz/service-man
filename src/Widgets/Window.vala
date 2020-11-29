@@ -1,30 +1,11 @@
-[DBus (name = "org.freedesktop.systemd1.Manager")]
-public interface SystemdManager : DBusProxy {
+using Gee;
 
-	public struct UnitInfo {
-		string id;
-		string description;
-		string load_state;
-		string active_state;
-		string sub_state;
-		string following;
-		ObjectPath unit_path;
-		uint32 job_id;
-		string job_type;
-		ObjectPath job_path;
-	}
-
-	//public signal void list_units_by_patterns (string[] states, string[] patterns);
-	// s s s s s s o u s o
-	//[DBus (name = "ListUnits")]  
-    public abstract UnitInfo[] list_units() throws Error;
-}
-
-
-public class ServiceMan.Window : Gtk.ApplicationWindow {
+public class ServiceManager.Window : Gtk.ApplicationWindow {
 	public GLib.Settings settings;
+	private Gtk.Paned system_services_paned;
+	private Gtk.Paned session_services_paned;
 
-	public Window (Application app) {
+	public Window (ServiceManagerApplication app) {
 		Object (
 			application: app
 		);
@@ -43,29 +24,70 @@ public class ServiceMan.Window : Gtk.ApplicationWindow {
 	 		return before_destroy ();
 	 	});
 
-	 	var headerbar = new ServiceMan.HeaderBar ();
+	 	var headerbar = new ServiceManager.HeaderBar ();
 		set_titlebar (headerbar);
-		 
-		show_all ();
-	
-		stdout.printf ("Hello\n");
 
-		SystemdManager systemdManager;
+		system_services_paned = create_services_paned(BusType.SYSTEM);
+		session_services_paned = create_services_paned(BusType.SESSION);
+		add(system_services_paned);
+
+		show_all ();
+	}
+
+	private Gtk.Paned create_services_paned(BusType bus_type) {
+		var stack = new Gtk.Stack ();
+		var unit_map = get_units(bus_type, {}, {"*.service"});
+		bool show_header = true;
+		foreach (var key in unit_map.keys) {
+			var unit = unit_map.get(key);
+			stdout.printf ("Unit: %s, state: %s, description: %s, sub-state: %s\n",
+				unit.id,
+				unit.active_state,
+				unit.description,
+				unit.sub_state
+			);
+			ServiceManager.ServiceView service_view;
+			string service_name = unit.id.replace(".service", "");
+			string header = show_header ? "Services" : null;
+			service_view = new ServiceManager.ServiceView(
+				service_name, 
+				unit.description, 
+				unit.active_state, 
+				header
+			);
+			if (show_header) {
+				show_header = false;
+			}
+			stack.add_named (service_view, service_name);
+		}
+
+		var switcher = new Granite.SettingsSidebar (stack);
+
+		var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+		paned.pack1 (switcher, false, false);
+		paned.add (stack);
+		
+		return paned;
+	}
+
+	public TreeMap<string, SystemdManager.UnitInfo?> get_units(BusType bus_type, string[] states, string[] patterns) {
+		SystemdManager systemd_manager;
+		var tree_map = new TreeMap<string, SystemdManager.UnitInfo?>();
 		try {
-			systemdManager = Bus.get_proxy_sync (
-				BusType.SYSTEM, 
+			systemd_manager = Bus.get_proxy_sync (
+				bus_type,
 				"org.freedesktop.systemd1",
 				"/org/freedesktop/systemd1"
 			);
-			stdout.printf ("Connected\n");
-			var units = systemdManager.list_units();
+			debug ("Connected\n");
+			var units = systemd_manager.list_units_by_patterns(states, patterns);
 			foreach (var unit in units) {
-				stdout.printf ("Unit: %s\n", unit.id);			
-			}	
+				tree_map.set(unit.id, unit);
+			}
 		} catch (GLib.Error e) {
-			stderr.printf ("Oh crap: %s\n", e.message);
+			error ("Caught an error: %s\n", e.message);
 		}
-	
+		return tree_map;
 	}
 
 	public bool before_destroy () {
