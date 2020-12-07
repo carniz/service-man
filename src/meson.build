@@ -2,6 +2,7 @@ plug_files = files(
 	'Plug.vala',
 	'DBusProxies/SystemdManager.vala',
 	'Widgets/ServiceView.vala',
+	'Widgets/ServicePaned.vala',
 	'Widgets/SettingsLabel.vala',
 )
 
