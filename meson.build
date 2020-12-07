@@ -1,4 +1,7 @@
-project('com.github.carniz.service-man', 'vala', 'c')
+project(
+    'service-manager', 
+    'vala', 'c'
+)
 
 gettext_name = meson.project_name()
 

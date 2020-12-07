@@ -1,23 +1,25 @@
-executable(
-	meson.project_name(),
-
-	'ServiceManagerApplication.vala',
-
+plug_files = files(
+	'Plug.vala',
 	'DBusProxies/SystemdManager.vala',
-
-	'Widgets/Window.vala',
-	'Widgets/HeaderBar.vala',
 	'Widgets/ServiceView.vala',
 	'Widgets/SettingsLabel.vala',
+)
 
-	dependencies: [
-		dependency('glib-2.0'),
-		dependency('gobject-2.0'),
-		dependency('gtk+-3.0'),
-		dependency('gio-2.0'),
-		dependency('granite'),
-		dependency('gee-0.8')
-	],
+switchboard_dep = dependency('switchboard-2.0')
 
-	install: true
+shared_module(
+    meson.project_name(),
+    plug_files,
+    dependencies: [
+		dependency('gee-0.8'),
+        dependency('glib-2.0'),
+        dependency('gio-2.0'),
+        dependency('gobject-2.0'),
+        dependency('granite'),
+        dependency('gtk+-3.0'),
+        meson.get_compiler('vala').find_library('posix'),
+        switchboard_dep
+    ],
+    install: true,
+    install_dir : join_paths(switchboard_dep.get_pkgconfig_variable('plugsdir'), 'services')
 )
